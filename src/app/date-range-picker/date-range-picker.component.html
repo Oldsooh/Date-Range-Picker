@@ -1,4 +1,6 @@
 <div>
   <h1>Demo Date Range Picker Control</h1>
-  <date-range-picker startLabel='截止日期:' format='yyyy-MM-dd'></date-range-picker>
+  <date-range-picker startLabel='截止日期:' format='yyyy-MM-dd' [(startDate)]="range.startDate" [(endDate)]="range.endDate"></date-range-picker>
+  <p>startDate: {{ range.startDate }}</p>
+  <p>endDate: {{ range.endDate }}</p>
 </div>

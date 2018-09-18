@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateRangePickerComponent implements OnInit {
 
+  range = { startDate: null, endDate: null };
+
   constructor() { }
 
   ngOnInit() {

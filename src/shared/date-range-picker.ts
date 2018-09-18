@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { DateRangePopupComponent } from '@progress/kendo-angular-dateinputs';
 import * as moment from 'moment';
 
@@ -196,14 +196,17 @@ import * as moment from 'moment';
 })
 
 // tslint:disable-next-line:component-class-suffix
-export class DateRangePicker {
+export class DateRangePicker implements OnInit {
   /**
    * The following input can be passed from attribute
    */
   @Input() startLabel = '开始日期';
   @Input() endLabel = '';
   @Input() format = 'yyyy-MM-dd';
-
+  @Input() startDate;
+  @Input() endDate;
+  @Output() startDateChange = new EventEmitter();
+  @Output() endDateChange = new EventEmitter();
   /**
    * Holds current selected date range
    */
@@ -238,6 +241,9 @@ export class DateRangePicker {
     this.initDate();
   }
 
+  ngOnInit() {
+
+  }
   /**
    * Initializes specified date objects.
    */
@@ -354,6 +360,8 @@ export class DateRangePicker {
     }
 
     this.lastSelectedRange = this.range;
+
+    this._raiseChange();
   }
 
   /**
@@ -364,5 +372,12 @@ export class DateRangePicker {
   _resetRange(start = null, end = null) {
     this.lastSelectedRange = this.range;
     this.range = { start: start, end: end };
+
+    this._raiseChange();
+  }
+
+  _raiseChange() {
+    this.startDateChange.emit(moment(this.range.start).format(this.format.toUpperCase()));
+    this.endDateChange.emit(moment(this.range.end).format(this.format.toUpperCase()));
   }
 }
