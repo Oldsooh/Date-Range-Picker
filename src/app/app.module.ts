@@ -2,27 +2,40 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { DateRangePickerComponent } from '../shared/date-range-picker';
+import { DateRangePicker } from '../shared/date-range-picker';
+import { EchartsMapComponent } from './echarts-map/echarts-map.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { DateRangePickerComponent } from './date-range-picker/date-range-picker.component';
+import { EchartsEasyComponent } from './echarts-easy/echarts-easy.component';
+import { ScriptService } from '../shared/script/script.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DateRangePickerComponent
+    DateRangePicker,
+    EchartsMapComponent,
+    DateRangePickerComponent,
+    EchartsEasyComponent
   ],
   imports: [
     BrowserModule,
     DateInputsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    NgxEchartsModule
   ],
-  providers: [],
+  providers: [
+    ScriptService
+  ],
   bootstrap: [AppComponent],
   exports: [
-    DateRangePickerComponent
+    DateRangePicker
   ]
 })
 export class AppModule { }

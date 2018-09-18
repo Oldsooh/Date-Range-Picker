@@ -195,7 +195,8 @@ import * as moment from 'moment';
     `]
 })
 
-export class DateRangePickerComponent {
+// tslint:disable-next-line:component-class-suffix
+export class DateRangePicker {
   /**
    * The following input can be passed from attribute
    */
