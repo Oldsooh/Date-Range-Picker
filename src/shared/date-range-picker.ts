@@ -53,7 +53,7 @@ import * as moment from 'moment';
             </div>
             <div class="date-body">
               <kendo-multiviewcalendar kendoDateRangeSelection
-              [(selectionRange)]="range"
+              [(selectionRange)]="range" [(max)]="maxAvailableDate"
               >
               </kendo-multiviewcalendar>
             </div>
@@ -222,6 +222,11 @@ export class DateRangePicker implements OnInit {
    */
   lastSelectedRange = { start: null, end: null };
 
+  /**
+   * The max date user can select
+   */
+  maxAvailableDate: Date;
+
   // The following objects hold specified date object
   todayTimeObj = { start: null, end: null };
   yesterdayTimeObj = { start: null, end: null };
@@ -249,6 +254,9 @@ export class DateRangePicker implements OnInit {
    */
   initDate() {
     const today = new Date();
+
+    this.maxAvailableDate = today;
+
     this.yesterdayTimeObj.start = moment(today).add(-1, 'days').startOf('day').toDate();
     this.yesterdayTimeObj.end = moment(today).add(-1, 'days').endOf('day').toDate();
 
